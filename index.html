@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <link rel="stylesheet" href="./scores.html">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <div class=row>
+            <div class="col-sm-6">
+                <p><a href="./scores.html"> View Highscores</a></p>
+            </div>
+            <div class="col-sm-6">
+                <p class="float-right" id="timer">Time: </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <h1 class="text-center">Coding Quiz Challenge</h1>
+                <div id="questions"></div>
+                <div id="choices"></div>
+                    <div class="choice" id="A"
+                    onclick="ChooseAnswerA">
+                    </div>
+                    <div class="choice" id="B"
+                    onclick="ChooseAnswerB">
+                    </div>
+                    <div class="choice" id="C"
+                    onclick="ChooseAnswerC">
+                    </div>
+            </div>
+        </div>
+        <div class=row>
+            <div class="col-sm-12">
+                <h5 class="text-center">Please finish this quiz in 60s, trust yourself!</h5>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-12 text-center">
+            <button type="button" class="btn btn-warning btn-lg"id="start">Start Quiz</button>
+            </div>
+        </div>
+
+
+    </div>
+    <script src="./script.js"></script>
+</body>
+
+</html>
