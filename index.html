@@ -13,38 +13,34 @@
 <body>
     <div class="container">
         <div class=row>
-            <div class="col-sm-6">
+            <div class="col-6">
                 <p><a href="./scores.html"> View Highscores</a></p>
             </div>
-            <div class="col-sm-6">
+            <div class="col-6">
                 <p class="float-right" id="timer">Time: </p>
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-12">
-                <h1 class="text-center">Coding Quiz Challenge</h1>
-                <div id="questions"></div>
-                <div id="choices"></div>
-                    <div class="choice" id="A"
-                    onclick="ChooseAnswerA">
-                    </div>
-                    <div class="choice" id="B"
-                    onclick="ChooseAnswerB">
-                    </div>
-                    <div class="choice" id="C"
-                    onclick="ChooseAnswerC">
-                    </div>
+            <div class="col-12">
+                <h1 class="text-center" id="h1Code">Coding Quiz Challenge</h1>
             </div>
         </div>
         <div class=row>
-            <div class="col-sm-12">
-                <h5 class="text-center">Please finish this quiz in 60s, trust yourself!</h5>
+            <div class="col-12">
+                <h5 class="text-center" id="h5Exp">Please finish this quiz in 60s, trust yourself!!!</h5>
             </div>
         </div>
         <br>
         <div class="row">
             <div class="col-sm-12 text-center">
-            <button type="button" class="btn btn-warning btn-lg"id="start">Start Quiz</button>
+                <button type = "button" class = "btn btn-warning btn-lg" id = "start">Start Quiz</button>
+                <div id="quiz" style = "display: none">
+                    <div id="a"></div>
+                    <div id="b"></div>
+                    <div id="c"></div>
+                    
+                    </div>
+                </div>
             </div>
         </div>
 
