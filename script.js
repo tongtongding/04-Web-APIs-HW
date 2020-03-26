@@ -27,13 +27,11 @@ start.addEventListener("click",function(){
     
         if(secondsRemaining === 0){
             clearInterval(intervalId);
-            alert("Time out");
-    
-            var MainDiv = document.createElement("div");
-            var h2Element = document.createElement("h2");
-            h2Element.textContent = "All Done!";
-            MainDiv.appendChild(h2Element);
-    
+            alert("Oops! Time out");
+        }else if(secondsRemaining < 0){
+            secondsRemaining=1;
+            
+
         }
     },1000);
 })
@@ -42,33 +40,39 @@ start.addEventListener("click",function(){
 var questions = [
     {
         question:"What is the HTML tag under which one can write the JavaScript code?",
-        choiceA:"<javascript>",
-        choiceB:"<scripted>",
-        choiceC:"<script>",
-        correct:"<script>", 
+        choiceA:"A:<javascript>",
+        choiceB:"B:<scripted>",
+        choiceC:"C:<script>",
+        correct:"C:<script>", 
     },{
-        question:"fvsfgsfdgdfhich one can write the JavaScript code?",
-        choiceA:"<javascript>",
-        choiceB:"<scripted>",
-        choiceC:"<script>",
-        correct:"<script>", 
+        question:"Select the property used to create space between the element’s border and inner content?",
+        choiceA:"A:spacing",
+        choiceB:"B:border",
+        choiceC:"C:padding",
+        correct:"C:padding", 
 
     },{
-        question:"Wsgfsdghyunder which one can write the JavaScript code?",
-        choiceA:"<javascript>",
-        choiceB:"<scripted>",
-        choiceC:"<script>",
-        correct:"<script>", 
+        question:"Select the appropriate HTML tag for inserting a line break?",
+        choiceA:"A:br",
+        choiceB:"B:break",
+        choiceC:"C:brbr",
+        correct:"A:br", 
+    },{
+        question:"In CSS,select the property used to set the background color of an image?",
+        choiceA:"A:color:background",
+        choiceB:"B:background:color",
+        choiceC:"C:background-color",
+        correct:"C:background-color", 
+    },{
+        question:"Which of the following is a true statement for JavaScript callbacks?",
+        choiceA:"A:A callback is a plain JavaScript function passed to some method as an argument or option.",
+        choiceB:"B:Some callbacks are just events, called to give the user a chance to react when a certain state is triggered.",
+        choiceC:"C:Both are correct",
+        correct:"C:Both are correct", 
     }
 ];
 
 
-// var questionsElement = document.createElement("p");
-// questionsElement.textContent = questions;
-
-// quiz="";
-
-// quiz.push(questions);
 
 var lastQuestion = questions.length - 1;
  
@@ -89,14 +93,31 @@ document.getElementById("options").addEventListener("click",function(event){
  var userChoice = event.target.textContent;
  
   if(userChoice === q.correct){
-      message.textContent="Correct!";
+      message.textContent="Correct! Good Job!";
   }else{
       message.textContent="Wrong!!";
-      secondsRemaining=secondsRemaining-20;
+      secondsRemaining=secondsRemaining-30;
   }
+  if(questionIndex < lastQuestion){
   questionIndex++;
-  showQuestions();
+  showQuestions();}
+  else{
+    timeOver();
+  }
+
 });
+
+
+function timeOver(){
+    h1Element.style.display="block";
+    h5Element.style.display="block";
+    quiz.style.display="none";
+     h1Element.textContent = "All Done!";
+     h5Element.textContent = "Your final score is " + secondsRemaining;
+ 
+    
+
+}
 
 
 
