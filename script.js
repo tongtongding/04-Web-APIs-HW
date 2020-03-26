@@ -3,10 +3,12 @@ var start = document.querySelector("#start");
 var h1Element = document.querySelector("#h1Code");
 var h5Element=document.querySelector("#h5Exp");
 var quiz = document.querySelector("#quiz");
-var choiceA = document.querySelector("#a");
-var choiceB = document.querySelector("#b");
-var choiceC = document.querySelector("#c");
-var message = document.getElementById("message");
+var intialInput = document.querySelector("#intial");
+var initialForm=document.querySelector("#initialForm");
+var submitInitial=document.querySelector("#submitInitial");
+
+
+var message = document.querySelector("#message");
 
 
 
@@ -23,16 +25,16 @@ start.addEventListener("click",function(){
 
     var intervalId = setInterval(function(){
         secondsRemaining--;
-        timeElement.textContent = "Time: " + secondsRemaining + "s";
     
-        if(secondsRemaining === 0){
+    
+        if(secondsRemaining <= 0){
             clearInterval(intervalId);
             alert("Oops! Time out");
-        }else if(secondsRemaining < 0){
-            secondsRemaining=1;
-            
-
+            secondsRemaining=0;
+            timeOver();
         }
+
+        timeElement.textContent = "Time: " + secondsRemaining + "s";
     },1000);
 })
 
@@ -80,30 +82,39 @@ var questionIndex = 0;
 
 var q;
 
+var allowSelection = false;
+
 function showQuestions(){
+        allowSelection=true;
         q = questions[questionIndex];
         document.getElementById("question").textContent = q.question;
         document.getElementById("a").textContent = q.choiceA;
         document.getElementById("b").textContent = q.choiceB;
         document.getElementById("c").textContent = q.choiceC;
+        message.textContent="";
 
     };
 
 document.getElementById("options").addEventListener("click",function(event){
- var userChoice = event.target.textContent;
+    if(allowSelection===true){
+        var userChoice = event.target.textContent;
  
-  if(userChoice === q.correct){
-      message.textContent="Correct! Good Job!";
-  }else{
-      message.textContent="Wrong!!";
-      secondsRemaining=secondsRemaining-30;
-  }
-  if(questionIndex < lastQuestion){
-  questionIndex++;
-  showQuestions();}
-  else{
-    timeOver();
-  }
+        if(userChoice === q.correct){
+            message.textContent="Correct! Good Job!";
+        }else{
+            message.textContent="Wrong!!";
+            secondsRemaining=secondsRemaining-20;
+        }
+        if(questionIndex < lastQuestion){
+        questionIndex++;
+        setTimeout(showQuestions,1000);
+        
+      }
+        else{
+          timeOver();
+        }
+    }
+   allowSelection=false;
 
 });
 
@@ -114,10 +125,17 @@ function timeOver(){
     quiz.style.display="none";
      h1Element.textContent = "All Done!";
      h5Element.textContent = "Your final score is " + secondsRemaining;
+    initialForm.style.display="block";
  
     
 
-}
+};
+
+initialForm.style.display="none";
+
+submitInitial.addEventListener("click",function(){
+    window.location.href ='./scores.html';
+});
 
 
 

@@ -1,3 +1,11 @@
-#quiz{
+#question{
  background-color: lightblue;
+}
+
+#options{
+background-color: lightgoldenrodyellow;
+}
+
+#initialForm{
+  text-align: center;
 }
