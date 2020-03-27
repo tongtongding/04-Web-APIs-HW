@@ -3,9 +3,10 @@ var start = document.querySelector("#start");
 var h1Element = document.querySelector("#h1Code");
 var h5Element=document.querySelector("#h5Exp");
 var quiz = document.querySelector("#quiz");
-var intialInput = document.querySelector("#intial");
+var initialInput = document.querySelector("#initial");
 var initialForm=document.querySelector("#initialForm");
 var submitInitial=document.querySelector("#submitInitial");
+var localStorage = window.localStorage
 
 
 var message = document.querySelector("#message");
@@ -103,7 +104,7 @@ document.getElementById("options").addEventListener("click",function(event){
             message.textContent="Correct! Good Job!";
         }else{
             message.textContent="Wrong!!";
-            secondsRemaining=secondsRemaining-20;
+            secondsRemaining=secondsRemaining-10;
         }
         if(questionIndex < lastQuestion){
         questionIndex++;
@@ -118,24 +119,34 @@ document.getElementById("options").addEventListener("click",function(event){
 
 });
 
-
 function timeOver(){
+    
     h1Element.style.display="block";
     h5Element.style.display="block";
     quiz.style.display="none";
      h1Element.textContent = "All Done!";
      h5Element.textContent = "Your final score is " + secondsRemaining;
     initialForm.style.display="block";
- 
     
-
+    
 };
 
 initialForm.style.display="none";
 
 submitInitial.addEventListener("click",function(){
+
+    localStorage.setItem("scores",secondsRemaining);
+    localStorage.setItem("initials",initialInput.value);  
     window.location.href ='./scores.html';
+   
 });
+
+
+
+
+
+
+
 
 
 
