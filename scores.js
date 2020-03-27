@@ -1,6 +1,7 @@
 var localStorage = window.localStorage;
 var scoreAndInitial = document.querySelector("#scoreAndInitial");
 var gobackButton = document.querySelector("#goBackButton");
+var clearScores = document.querySelector("#clearScores");
 
 
 var userScore = localStorage.getItem("scores");
@@ -15,26 +16,41 @@ if(leaderBoard){
     leaderBoard=[];
 };
 
-var user = {
-    initial:userInitial,
-    score: userScore
-}
 
-leaderBoard.push(user);
-localStorage.setItem("leaderBoard",JSON.stringify(leaderBoard));
-
-
-for(var i=0; i<leaderBoard.length;i++){
-    var newLi1Element = document.createElement("li");
-    newLi1Element.innerHTML =leaderBoard[i].initial + leaderBoard[i].score;
-    scoreAndInitial.appendChild(newLi1Element); 
-
+if(userScore && userInitial){
+    var user = {
+        initial:userInitial,
+        score: userScore
+    }
+    
+    leaderBoard.push(user);
+    
 };
 
-gobackButton.addEventListener("click",function{
-    var newAElement = document.createElement("a");
-    newAElement.
+localStorage.setItem("leaderBoard",JSON.stringify(leaderBoard));
 
-})
+leaderBoard.sort(function(a,b){
+    return b.score - a.score;
+});
+
+
+if(leaderBoard.length>0){
+    for(var i=0; i<leaderBoard.length;i++){
+        var newLi1Element = document.createElement("li");
+        newLi1Element.innerHTML =leaderBoard[i].initial + " - " + leaderBoard[i].score;
+        scoreAndInitial.appendChild(newLi1Element); 
+    
+    };
+
+}
+
+
+clearScores.addEventListener("click", function(){
+    leaderBoard=[];
+    localStorage.removeItem("scores");
+    localStorage.removeItem("initials");
+    localStorage.removeItem("leaderBoard");
+    location.reload();
+});
 
 

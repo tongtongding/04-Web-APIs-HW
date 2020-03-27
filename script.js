@@ -15,6 +15,7 @@ var message = document.querySelector("#message");
 
 var secondsRemaining = 60;
 var scores = 0;
+var intervalId="";
 
 start.addEventListener("click",function(){
     start.style.display ="none";
@@ -24,7 +25,7 @@ start.addEventListener("click",function(){
     quiz.style.display="block";
    
 
-    var intervalId = setInterval(function(){
+    intervalId = setInterval(function(){
         secondsRemaining--;
     
     
@@ -112,7 +113,9 @@ document.getElementById("options").addEventListener("click",function(event){
         
       }
         else{
+          clearInterval(intervalId);
           timeOver();
+          
         }
     }
    allowSelection=false;
@@ -137,6 +140,7 @@ submitInitial.addEventListener("click",function(){
 
     localStorage.setItem("scores",secondsRemaining);
     localStorage.setItem("initials",initialInput.value);  
+    initialInput.value = "";
     window.location.href ='./scores.html';
    
 });
