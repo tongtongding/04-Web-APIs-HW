@@ -1,12 +1,12 @@
 var timeElement = document.querySelector("#timer");
 var start = document.querySelector("#start");
 var h1Element = document.querySelector("#h1Code");
-var h5Element=document.querySelector("#h5Exp");
+var h5Element = document.querySelector("#h5Exp");
 var quiz = document.querySelector("#quiz");
 var initialInput = document.querySelector("#initial");
-var initialForm=document.querySelector("#initialForm");
-var submitInitial=document.querySelector("#submitInitial");
-var localStorage = window.localStorage
+var initialForm = document.querySelector("#initialForm");
+var submitInitial = document.querySelector("#submitInitial");
+var localStorage = window.localStorage;
 
 
 var message = document.querySelector("#message");
@@ -15,19 +15,18 @@ var message = document.querySelector("#message");
 
 var secondsRemaining = 60;
 var scores = 0;
-var intervalId="";
+var intervalId = "";
 
 start.addEventListener("click",function(){
-    start.style.display ="none";
-    h1Element.style.display="none";
-    h5Element.style.display="none";
+    start.style.display = "none";
+    h1Element.style.display = "none";
+    h5Element.style.display = "none";
     showQuestions();
-    quiz.style.display="block";
+    quiz.style.display = "block";
    
 
     intervalId = setInterval(function(){
         secondsRemaining--;
-    
     
         if(secondsRemaining <= 0){
             clearInterval(intervalId);
@@ -77,7 +76,6 @@ var questions = [
 ];
 
 
-
 var lastQuestion = questions.length - 1;
  
 var questionIndex = 0;
@@ -87,7 +85,7 @@ var q;
 var allowSelection = false;
 
 function showQuestions(){
-        allowSelection=true;
+        allowSelection = true;
         q = questions[questionIndex];
         document.getElementById("question").textContent = q.question;
         document.getElementById("a").textContent = q.choiceA;
@@ -98,14 +96,15 @@ function showQuestions(){
     };
 
 document.getElementById("options").addEventListener("click",function(event){
-    if(allowSelection===true){
+    if(allowSelection === true){
         var userChoice = event.target.textContent;
  
         if(userChoice === q.correct){
             message.textContent="Correct! Good Job!";
         }else{
-            message.textContent="Wrong!!";
-            secondsRemaining=secondsRemaining-10;
+            message.textContent = "Wrong!!";
+            secondsRemaining = secondsRemaining-10;
+            timeElement.textContent = "Time: " + secondsRemaining + "s";
         }
         if(questionIndex < lastQuestion){
         questionIndex++;
@@ -124,24 +123,24 @@ document.getElementById("options").addEventListener("click",function(event){
 
 function timeOver(){
     
-    h1Element.style.display="block";
-    h5Element.style.display="block";
-    quiz.style.display="none";
+    h1Element.style.display = "block";
+    h5Element.style.display = "block";
+    quiz.style.display = "none";
      h1Element.textContent = "All Done!";
      h5Element.textContent = "Your final score is " + secondsRemaining;
-    initialForm.style.display="block";
+    initialForm.style.display = "block";
     
     
 };
 
-initialForm.style.display="none";
+initialForm.style.display = "none";
 
 submitInitial.addEventListener("click",function(){
 
     localStorage.setItem("scores",secondsRemaining);
     localStorage.setItem("initials",initialInput.value);  
     initialInput.value = "";
-    window.location.href ='./scores.html';
+    window.location.href = './scores.html';
    
 });
 

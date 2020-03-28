@@ -13,7 +13,7 @@ var leaderBoard = localStorage.getItem("leaderBoard");
 if(leaderBoard){
     leaderBoard = JSON.parse(leaderBoard);
 }else{
-    leaderBoard=[];
+    leaderBoard = [];
 };
 
 
@@ -28,21 +28,20 @@ if(userScore && userInitial){
 };
 
 localStorage.setItem("leaderBoard",JSON.stringify(leaderBoard));
-
 leaderBoard.sort(function(a,b){
     return b.score - a.score;
 });
 
 
 if(leaderBoard.length>0){
-    for(var i=0; i<leaderBoard.length;i++){
+    for(var i = 0; i < leaderBoard.length;i++){
         var newLi1Element = document.createElement("li");
-        newLi1Element.innerHTML =leaderBoard[i].initial + " - " + leaderBoard[i].score;
+        newLi1Element.innerHTML = leaderBoard[i].initial + " - " + leaderBoard[i].score;
         scoreAndInitial.appendChild(newLi1Element); 
-    
+        scoreAndInitial.setAttribute("style","text-align:center; background-color:powderblue");
     };
 
-}
+};
 
 
 clearScores.addEventListener("click", function(){
